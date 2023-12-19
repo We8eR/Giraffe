@@ -32,5 +32,47 @@ public static class DelegateReflection
             Console.WriteLine("Invalid delType argument: " + args[0]);
             return;
         }
+        Delegate d;
+        try
+        {
+            MethodInfo mi = typeof(DelegateReflection).GetTypeInfo().GetDeclaredMethod(args[1]);
+            d = mi.CreateDelegate(delType);
+        }
+        catch (ArgumentException)
+        {
+            Console.WriteLine("Invalid methodName argument: + args[1]");
+            return;
+        }
+        Object[] callbackArgs = new Object[args.Length 2];
+
+        if (d.GetType() == typeof(TwoInt32s))
+        try{
+            for (Int32 a = 2; a < args.Length; a++)
+                    callbackArgs[a 2] = Int32.Parse(args[a]);
+
+        }
+        catch(FormatException)
+            {
+                Console.WriteLine("Parameters must be integers.");
+                return;
+            }
     }
+        if (d.GetType() == typeof(OneString)) {
+        Array.Copy(args, 2, callbackArgs, 0, callbackArgs.Lenght);
+
+        }
+try
+{
+    Object result = d.DynamicInvoke(callbackArgs);
+    Console.WriteLine("Result =" + result);
+}
+catch (TargetParameterCountException)
+{
+    Console.WriteLine("Incorrect number of parameters specified.");
+}
+}
+
+private static Object Add(Int32 n1, Int32 n2)
+{
+    return n1 + n2;
 }
