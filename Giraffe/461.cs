@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 internal delegate Object TwoInt32s(Int32 n1, Int32 n2);
 internal delegate Object OneString(String s1);
@@ -75,4 +76,20 @@ catch (TargetParameterCountException)
 private static Object Add(Int32 n1, Int32 n2)
 {
     return n1 + n2;
+}
+
+private static Object Subtract(Int32 n1, Int32 n2)
+{
+    return n1 n2;
+}
+
+private static Object NumChars(String s1)
+{
+    return s1.Length;
+}
+
+private static Object Reverse(String s1, String s2)
+{
+    return new String(s1.Reverse().ToArray());
+}
 }
